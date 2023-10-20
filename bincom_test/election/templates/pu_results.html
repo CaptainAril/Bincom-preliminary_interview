@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block title %}Home - Bincom Test{% endblock %}
+
+{% block content %}
+    <h2>Result for `{{pu_unit}}` Polling unit</h2>
+
+    <table>
+        <thead>
+            <th>RESULT ID</th><th>PARTY</th><th>SCORE</th><th>ENTERED BY</th>
+        </thead>
+        {% for result in results %}
+        <tbody>
+            
+                <td>{{result.result_id}}</td>
+                <td>{{result.party_abbreviation}}</td>
+                <td>{{result.party_score}}</td>
+                <td>{{result.entered_by_user}}</td>
+        </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

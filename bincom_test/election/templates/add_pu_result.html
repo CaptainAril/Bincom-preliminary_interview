@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block style %}
+    <style>
+        #dynamic-fields-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 30%;
+        }
+
+        .party-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .party-input-container input {
+            width: 100%;
+        }
+
+        #dynamic-fields-container button {
+            margin-top: 10px;
+        }
+
+        #dynamic-fields-container br {
+            margin-bottom: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+  <h2>Add New/Update Polling Unit Results</h2>
+  <form method="post" action="{% url 'new_result' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <button type="submit">Submit</button>
+  </form>
+
+{% endblock %}

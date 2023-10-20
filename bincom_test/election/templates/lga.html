@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}LGA results - Bincome Test{% endblock %}
+
+{% block content %}
+
+    <h2>Results by LGA</h2>
+
+    <p>Select LGA</p>
+    <form action="{% url 'lga' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Go</button>
+    </form>
+    
+{% endblock %}

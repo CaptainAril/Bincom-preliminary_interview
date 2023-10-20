@@ -7,8 +7,9 @@ class party(models.Model):
 
     class Meta:
         db_table = 'party'
+        managed = False
 
-    id = models.IntegerField(max_length=11, primary_key=True)
+    id = models.IntegerField(primary_key=True)
     partyid = models.CharField(max_length=11)
     partyname = models.CharField(max_length=11)
 
@@ -20,8 +21,9 @@ class states(models.Model):
 
     class Meta:
         db_table = 'states'
+        managed = False
 
-    state_id = models.IntegerField(max_length=11, primary_key=True)
+    state_id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -33,15 +35,16 @@ class lga(models.Model):
 
     class Meta:
         db_table = 'lga'
+        managed = False
 
-    uniqueid = models.IntegerField(max_length=11, primary_key=True)
-    lga_id = models.IntegerField(max_length=11)
+    uniqueid = models.IntegerField(primary_key=True)
+    lga_id = models.IntegerField()
     lga_name = models.CharField(max_length=50)
     state = models.ForeignKey(states, on_delete=models.CASCADE)
     lga_description = models.TextField()
-    entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateField(auto_now_add=True)
-    user_ip_address = models.CharField(max_length=50)
+    entered_by_user = models.CharField(max_length=255, blank=True)
+    date_entered = models.DateTimeField(auto_now_add=True)
+    user_ip_address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'{self.lga_name}'
@@ -52,15 +55,16 @@ class ward(models.Model):
 
     class Meta:
         db_table = 'ward'
+        managed = False
     
-    uniqueid = models.IntegerField(max_length=11, primary_key=True)
-    ward_id = models.IntegerField(max_length=11)
+    uniqueid = models.IntegerField(primary_key=True)
+    ward_id = models.IntegerField()
     ward_name = models.CharField(max_length=50)
     lga = models.ForeignKey(lga, on_delete=models.CASCADE)
     ward_description = models.TextField()
-    entered_by_user = models.CharField(max_length=50)
-    date_entered = models.DateField(auto_now_add=True)
-    user_ip_address = models.CharField(max_length=50)
+    entered_by_user = models.CharField(max_length=255, blank=True)
+    date_entered = models.DateTimeField(auto_now_add=True)
+    user_ip_address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'{self.ward_name}'
@@ -71,20 +75,21 @@ class polling_unit(models.Model):
 
     class Meta:
         db_table = 'polling_unit'
+        managed = False
 
-    uniqueid = models.IntegerField(max_length=11, primary_key=True) # Set auto_increment
-    polling_unit_id = models.IntegerField(max_length=11)
+    uniqueid = models.IntegerField(primary_key=True) # Set auto_increment
+    polling_unit_id = models.IntegerField()
     ward = models.ForeignKey(ward, on_delete=models.CASCADE)
     lga = models.ForeignKey(lga, on_delete=models.CASCADE)
-    uniquewardid = models.IntegerField(max_length=11, null=True)
+    uniquewardid = models.IntegerField(null=True)
     polling_unit_number = models.CharField(max_length=50, null=True)
     polling_unit_name = models.CharField(max_length=50, null=True)
     polling_unit_description = models.TextField()
     lat = models.CharField(max_length=255, null=True)
     long = models.CharField(max_length=255, null=True)
-    entered_by_user = models.CharField(max_length=255, null=True)
-    date_entered = models.DateTimeField(null=True)
-    user_ip_address = models.CharField(max_length=50, null=True)
+    entered_by_user = models.CharField(max_length=255, blank=True)
+    date_entered = models.DateTimeField(auto_now_add=True)
+    user_ip_address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return f'{self.polling_unit_name}'
@@ -94,14 +99,15 @@ class announced_pu_results(models.Model):
 
     class Meta:
         db_table = 'announced_pu_results'
+        managed = False
 
-    result_id = models.IntegerField(max_length=11, primary_key=True)
+    result_id = models.IntegerField(primary_key=True)
     polling_unit_uniqueid = models.CharField(max_length=50)
     party_abbreviation = models.CharField(max_length=4)
-    party_score = models.IntegerField(max_length=11)
-    entered_bu_user = models.CharField(max_length=255, null=True)
+    party_score = models.IntegerField()
+    entered_by_user = models.CharField(max_length=255, blank=True)
     date_entered = models.DateTimeField(auto_now_add=True)
-    user_ip_address = models.CharField(max_length=50, null=True)
+    user_ip_address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         field_values = {}
@@ -115,14 +121,15 @@ class announced_lga_results(models.Model):
 
     class Meta:
         db_table = 'announced_lga_results'
+        managed = False
 
-    result_id = models.IntegerField(max_length=11, primary_key=True)
+    result_id = models.IntegerField(primary_key=True)
     lga_name = models.CharField(max_length=50)
     party_abbreviation = models.CharField(max_length=4)
-    party_score = models.IntegerField(max_length=11)
-    entered_bu_user = models.CharField(max_length=255, null=True)
+    party_score = models.IntegerField()
+    entered_by_user = models.CharField(max_length=255, blank=True)
     date_entered = models.DateTimeField(auto_now_add=True)
-    user_ip_address = models.CharField(max_length=50, null=True)
+    user_ip_address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         field_values = {}

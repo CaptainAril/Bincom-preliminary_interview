@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Polling Unit Results - Bincom Test{% endblock %}
+
+{% block content %}
+    <h2>Individual polling unit result</h2>
+
+<p>Select Polling Unit</p>
+    <form action="{% url 'unit' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Go</button>
+    </form>
+
+{% endblock %}

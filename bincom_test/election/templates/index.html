@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home - Bincome Test{% endblock %}
+{% block style %}
+    <!-- <style>
+        p span {
+        font-weight: bold; /* for example */
+        /* Add more styles as needed */
+    }
+    </style> -->
+    
+{% endblock %}
+
+{% block content %}
+    <p>Solutions by <span>{{ name }}</span></p> 
+
+    <a href="{% url 'unit' %}"><h2>Individual polling unit result</h2></a>
+
+    <a href="{% url 'lga' %}"><h2>Results by LGA</h2></a>
+
+    <a href="{% url 'new_result' %}"><h2>Input new polling unit result</h2></a>
+{% endblock %}

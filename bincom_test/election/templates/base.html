@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <style type="text/css">
+	
+        body{
+            width:1000px;
+            margin: auto;
+        }
+        table,tr,td{
+            border:solid;
+            padding: 5px;
+        }
+        table{
+            border-collapse: collapse;
+            width:100%;
+        }
+        h2{
+            font-size: 25px;
+            color:green;
+            /* text-align: center; */
+            /* margin-top: 100px; */
+        }
+        p{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+    </style>
+    {% block style %} {% endblock %}
+    
+    
+</head>
+<body>
+    <a href="{% url 'home' %}"><h1>Bincom Preliminary Interview</h1></a>
+
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>
