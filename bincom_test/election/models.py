@@ -103,7 +103,7 @@ class announced_pu_results(models.Model):
 
     result_id = models.IntegerField(primary_key=True)
     polling_unit_uniqueid = models.CharField(max_length=50)
-    party_abbreviation = models.CharField(max_length=4)
+    party_abbreviation = models.CharField(max_length=6)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=255, blank=True)
     date_entered = models.DateTimeField(auto_now_add=True)
@@ -125,7 +125,7 @@ class announced_lga_results(models.Model):
 
     result_id = models.IntegerField(primary_key=True)
     lga_name = models.CharField(max_length=50)
-    party_abbreviation = models.CharField(max_length=4)
+    party_abbreviation = models.CharField(max_length=6)
     party_score = models.IntegerField()
     entered_by_user = models.CharField(max_length=255, blank=True)
     date_entered = models.DateTimeField(auto_now_add=True)
